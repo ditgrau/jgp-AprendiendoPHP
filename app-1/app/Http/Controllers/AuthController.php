@@ -20,6 +20,7 @@ class AuthController extends Controller
                 'name' => 'required|string',
                 'surname' => 'required|string',
                 'email' => 'required|email|unique:users,email',
+                //unique:users,email (validacion:tabla,campo)
                 'password' => ['required', Password::min(8)->mixedCase()->numbers()]
             ]);
 
@@ -28,7 +29,7 @@ class AuthController extends Controller
             }
 
             $validData = $validator->validated();
-
+        //funcion create, entra por body, .post
             $newUser = User::create([
                 'name' => $validData['name'],
                 'surname' => $validData['surname'],
@@ -44,7 +45,7 @@ class AuthController extends Controller
                 'message' => 'User registered',
                 'data' => $newUser
             ], Response::HTTP_CREATED);
-            
+
         } catch (\Throwable $th) {
             Log::error('Error registering user ' . $th->getMessage());
 

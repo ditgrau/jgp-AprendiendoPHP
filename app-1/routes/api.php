@@ -29,6 +29,7 @@ Route::get('/user/{id}', function($id){
 
 // CONTROLADORES DE TASKS
 
+//llama directamente al controlador 'GetAllTasks::class' porque es invokable, entra en la funcion
 Route::get('/tasks', GetAllTasks::class);
 Route::get('/tasks/{id}', GetTaskByUser::class);
 Route::get('/tasks/description/{description}', getTasksByDescription::class);
